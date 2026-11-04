@@ -29,9 +29,11 @@ def initial_page():
     if (option==0):
         if logged_in == False and current_user_type is None:
             login()
+            return 0
     elif (option==1):
         if logged_in == False and current_user_type is None:
             sign_up()
+            return 0
     else:
         pass
 
@@ -53,7 +55,7 @@ def login():
             global current_user_type
 
             logged_in=True
-            current_user_type="student"
+            current_user_type = user[3]
             username=l_name
 
             return 0
@@ -98,6 +100,30 @@ def sign_up():
     print("User Created & Logged In Successfully!")
     return 0
 
+def admin_interface():
+    print("0: Edit Existing Quizzes\n1: Create a Quiz\n2: See Student Analytics")
+    option=int(input("Choose Your Option: "))
+    if (option == 0):
+        pass
+    elif (option == 1):
+        pass
+    elif (option == 2):
+        pass
+    else:
+        pass
+
+def student_interface():
+    print("0: Attempt a Quiz\n1: See Your Performance")
+    option=int(input("Choose Your Option: "))
+    if (option == 0):
+        pass
+    elif (option == 1):
+        pass
+    elif (option == 2):
+        pass
+    else:
+        pass   
+
 print("Welcome to Quiz Platform!")
 
 logged_in=False
@@ -105,6 +131,14 @@ current_user_type=None
 username=""
 
 initial_page()
+
+is_running=True
+
+while(is_running):
+    if (current_user_type == "admin" or username == "admin"):
+            admin_interface()
+    elif (current_user_type == "student" or username != "admin"):
+            student_interface()
 
 # print(logged_in, current_user_type, username)
 
